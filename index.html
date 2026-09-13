@@ -1,0 +1,1807 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>TWIBBON MENARIK— Season 5</title>
+    <style>
+      @font-face {
+        font-family: "SmallBoldPixel7";
+        src: url("font/small_bold_pixel-7.ttf") format("truetype");
+      }
+
+      @font-face {
+        font-family: "PixeloutPersonalUseOnly";
+        src: url("font/Pixelout.ttf") format("truetype");
+      }
+
+      @font-face {
+        font-family: "Pixellari";
+        src: url("font/Pixellari.ttf") format("truetype");
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      :root {
+        --navy: #07134b;
+        --blue: #2259db;
+        --pink: #df35a5;
+        --pink2: #ff63c8;
+        --white: #f5f6ff;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--white);
+        font-family: Pixellari;
+        background:
+          radial-gradient(
+              circle,
+              rgba(255, 255, 255, 0.13) 1.5px,
+              transparent 2px
+            )
+            0 0/22px 22px,
+          linear-gradient(135deg, #08134d, #172b87 52%, #3a137d);
+      }
+      header {
+        height: 60px;
+        border-bottom: 3px solid #e4e9ff;
+        background: rgba(5, 13, 58, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 22px;
+        position: sticky;
+        top: 0;
+        z-index: 5;
+      }
+      .logo {
+        font-weight: 900;
+        letter-spacing: 1.5px;
+      }
+      .clock {
+        font: 900 18px monospace;
+      }
+      main {
+        width: min(1050px, 92%);
+        margin: auto;
+        padding: 28px 0 55px;
+      }
+      nav {
+        display: flex;
+        gap: 9px;
+        margin-bottom: 20px;
+      }
+      nav button.active {
+        background: var(--pink);
+        border-color: #ff8ed9;
+      }
+      .page {
+        display: none;
+      }
+      .page.active {
+        display: block;
+      }
+      .hero {
+        text-align: center;
+        margin-bottom: 45px;
+        margin-top: 20px;
+      }
+
+      .hero-title-wrap {
+        position: relative;
+        display: inline-block;
+        transform: rotate(-3deg);
+        filter: drop-shadow(10px 12px 0px #111e5e);
+      }
+
+      h1 {
+        position: relative;
+        display: inline-block;
+        margin: 0;
+        font-size: clamp(90px, 30vw, 250px);
+        line-height: 0.9;
+        letter-spacing: 1px;
+        z-index: 1;
+        font-family: "SmallBoldPixel7", monospace, sans-serif !important;
+        color: transparent;
+      }
+
+      h1::before {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+        color: #ffffff;
+        -webkit-text-stroke: 14px #ffffff;
+        paint-order: stroke fill;
+      }
+
+      h1::after {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 2;
+
+        background: linear-gradient(180deg, var(--pink2) 0%, #a81380 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+
+      .season-badge {
+        position: absolute;
+        right: -15px;
+        bottom: 6px;
+        background: linear-gradient(135deg, #2259db 0%, #102980 100%);
+        color: #ffffff;
+        padding: 6px 10px 6px 10px;
+        font-size: clamp(15px, 4vw, 40px);
+        font-family:
+          "PixeloutPersonalUseOnly", monospace, sans-serif !important;
+        font-weight: normal;
+        letter-spacing: 2px;
+        box-shadow: 5px 5px 0 #08113b;
+        z-index: 2;
+        white-space: nowrap;
+        transform: rotate(5deg);
+      }
+
+      .hero p {
+        color: #d8e0ff;
+        margin-top: 25px;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 22px;
+        align-items: stretch;
+      }
+      .card {
+        background: rgba(7, 20, 76, 0.92);
+        border: 3px solid #5276df;
+        padding: 18px;
+        box-shadow: 9px 9px 0 rgba(0, 0, 0, 0.23);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .card:before {
+        content: "";
+        position: absolute;
+        inset: 7px;
+        border: 1px dashed rgba(255, 255, 255, 0.15);
+        pointer-events: none;
+      }
+      .card > * {
+        position: relative;
+      }
+
+      .drop {
+        border: 3px dashed var(--pink);
+        padding: 14px;
+        text-align: center;
+        background: rgba(223, 53, 165, 0.08);
+        margin-bottom: 14px;
+      }
+      .label {
+        display: block;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin: 0 0 6px;
+      }
+      input[type="file"] {
+        width: 100%;
+        padding: 9px;
+        background: #102064;
+        color: #fff;
+        border: 2px solid #496ddd;
+        border-radius: 5px;
+        font-family: Pixellari;
+      }
+      .control {
+        background: #0d1d62;
+        border: 2px solid #3856b1;
+        padding: 8px 10px;
+        margin-top: 8px;
+      }
+      .control label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        margin-bottom: 4px;
+      }
+      input[type="range"] {
+        width: 100%;
+        accent-color: var(--pink2);
+        cursor: pointer;
+      }
+      button.primary,
+      a.primary {
+        width: 100%;
+        margin-top: 10px;
+        padding: 12px;
+        border: 0;
+        color: #fff;
+        background: linear-gradient(135deg, #eb3eae, #7548ed);
+        font-family: Pixellari;
+        font-weight: 900;
+        cursor: pointer;
+        box-shadow: 4px 4px 0 #050c32;
+        transition:
+          transform 0.08s ease,
+          box-shadow 0.08s ease;
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        font-size: 13px;
+      }
+      button.primary:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+      .primary:active:not(:disabled) {
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0 #050c32;
+      }
+      nav button {
+        color: #fff;
+        background: #17388e;
+        border: 2px solid #5778df;
+        padding: 9px 16px;
+        font-weight: 900;
+        cursor: pointer;
+        transition: transform 0.08s ease;
+      }
+      nav button:active {
+        transform: scale(0.93);
+      }
+
+      @keyframes pulseGlow {
+        0%,
+        100% {
+          box-shadow:
+            4px 4px 0 #050c32,
+            0 0 0 rgba(255, 255, 255, 0);
+        }
+        50% {
+          box-shadow:
+            4px 4px 0 #050c32,
+            0 0 16px 3px rgba(255, 99, 200, 0.6);
+        }
+      }
+      .btn-pulse {
+        animation: pulseGlow 1.2s ease-in-out infinite;
+      }
+
+      .stage {
+        background: #03091f;
+        border: 3px solid #6783e5;
+        padding: 8px;
+        position: relative;
+        cursor: pointer;
+        user-select: none;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      canvas {
+        display: block;
+        width: 100%;
+        max-width: 620px;
+        aspect-ratio: 1080/1350;
+        height: auto;
+        margin: auto;
+        background: #050b2b;
+      }
+
+      .tutorial-card,
+      .caption-card {
+        margin-bottom: 22px;
+        display: block;
+      }
+      .tutorial-head,
+      .caption-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+      }
+      .tutorial-head strong,
+      .caption-head strong {
+        font-size: 18px;
+        color: var(--pink2);
+      }
+      .tutorial-video {
+        width: 100%;
+        display: block;
+        max-height: 430px;
+        background: #000;
+        border: 3px solid #3856b1;
+      }
+      .help {
+        font-size: 11px;
+        color: #b9c6f0;
+        line-height: 1.4;
+      }
+
+      .caption-box {
+        background: #091754;
+        border: 2px solid #3856b1;
+        padding: 14px;
+        font-family: monospace;
+        font-size: 12px;
+        color: #e4e9ff;
+        white-space: pre-line;
+        line-height: 1.5;
+        user-select: text;
+        word-break: break-word;
+      }
+
+      .mini-preview-box {
+        margin-top: 10px;
+        background: #091754;
+        border: 2px dashed var(--pink);
+        padding: 8px;
+        text-align: center;
+      }
+      .mini-preview-title {
+        font-size: 10px;
+        font-weight: 900;
+        color: #ff8ed9;
+        letter-spacing: 0.5px;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+      }
+      .mini-canvas-wrap {
+        width: 100%;
+        aspect-ratio: 1080/1350;
+        background: #030822;
+        border: 1px solid #3856b1;
+        overflow: hidden;
+        position: relative;
+      }
+      #miniCanvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      .btn-apply-preview {
+        display: none;
+        margin-top: 8px;
+        background: linear-gradient(135deg, #2259db, #17388e);
+        border: 2px solid #5778df;
+        color: #fff;
+        font-weight: 900;
+        font-size: 11px;
+        padding: 8px;
+        width: 100%;
+        cursor: pointer;
+        box-shadow: 3px 3px 0 #050c32;
+        transition: all 0.1s ease;
+        letter-spacing: 0.5px;
+      }
+      .btn-apply-preview:active {
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0 #050c32;
+      }
+
+      .canvas-seek-box {
+        margin-top: 10px;
+        background: #0d1d62;
+        border: 2px solid #3856b1;
+        padding: 10px;
+        letter-spacing: 2px;
+      }
+      .canvas-seek-box label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        font-weight: bold;
+        margin-bottom: 6px;
+        color: #d8e0ff;
+      }
+
+      .video-download-container {
+        display: none;
+        margin-top: 10px;
+        padding: 10px;
+        background: #09164d;
+        border: 2px solid #ff63c8;
+        box-shadow: 4px 4px 0 #050c32;
+      }
+      .video-download-title {
+        font-size: 11px;
+        font-weight: 900;
+        color: #ff8ed9;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        text-align: center;
+      }
+      .video-download-btns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .btn-video-dl {
+        padding: 10px;
+        border: 0;
+        color: #fff;
+        font-weight: 900;
+        font-size: 11px;
+        cursor: pointer;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        text-align: center;
+        box-shadow: 3px 3px 0 #050c32;
+        transition:
+          transform 0.08s ease,
+          box-shadow 0.08s ease;
+      }
+      .btn-dl-mp4-styled {
+        background: linear-gradient(135deg, #eb3eae, #7548ed);
+        border: 2px solid #ff8ed9;
+      }
+      .btn-dl-png-styled {
+        background: linear-gradient(135deg, #17388e, #0d1d62);
+        border: 2px solid #5778df;
+      }
+      .btn-video-dl:active {
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0 #050c32;
+      }
+
+      .play-overlay-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.8);
+        width: 60px;
+        height: 60px;
+        background: rgba(0, 0, 0, 0.55);
+        backdrop-filter: blur(4px);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        pointer-events: none;
+        opacity: 0;
+        transition: all 0.25s ease;
+        z-index: 2;
+      }
+      .stage:hover .play-overlay-icon,
+      .stage.show-icon .play-overlay-icon {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      @media (max-width: 880px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        .video-download-btns {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 760px) {
+        header {
+          height: 54px;
+        }
+        .logo {
+          font-size: 13px;
+        }
+        main {
+          padding: 20px 0 40px;
+        }
+      }
+
+      .export-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: rgba(3, 9, 31, 0.92);
+        backdrop-filter: blur(5px);
+        padding: 20px;
+      }
+      .export-overlay.show {
+        display: flex;
+      }
+      .export-box {
+        text-align: center;
+        max-width: 340px;
+        width: 100%;
+        background: transparent;
+        border: none;
+        padding: 0;
+        position: relative;
+      }
+      .minara-wrap {
+        position: relative;
+        width: 130px;
+        margin: 0 auto 6px;
+      }
+      .minara-wrap img {
+        width: 100%;
+        display: block;
+        animation: minaraBounce 1.15s ease-in-out infinite;
+      }
+      .minara-wrap .spark {
+        position: absolute;
+        top: -6px;
+        right: 6px;
+        font-size: 22px;
+        animation: sparkPop 1.15s ease-in-out infinite;
+      }
+      @keyframes minaraBounce {
+        0%,
+        100% {
+          transform: translateY(0) rotate(-2deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(2deg);
+        }
+      }
+      @keyframes sparkPop {
+        0%,
+        100% {
+          opacity: 0.25;
+          transform: scale(0.8) rotate(0deg);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.15) rotate(15deg);
+        }
+      }
+      .export-title {
+        font-weight: 900;
+        color: var(--pink2);
+        font-size: 18px;
+        letter-spacing: 0.5px;
+        margin-top: 6px;
+      }
+      .export-text {
+        color: #dfe4ff;
+        font-size: 12px;
+        margin-top: 6px;
+        line-height: 1.5;
+        min-height: 32px;
+      }
+      .export-progress {
+        width: 100%;
+        height: 10px;
+        background: #0d1d62;
+        border: 2px solid #3856b1;
+        margin: 12px auto 0;
+        overflow: hidden;
+        border-radius: 6px;
+      }
+      .export-progress-bar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(135deg, #eb3eae, #7548ed);
+        transition: width 0.25s linear;
+      }
+      .export-hint {
+        color: #9fb0e8;
+        font-size: 11px;
+        margin-top: 10px;
+      }
+
+      .btn-cancel-export {
+        margin-top: 16px;
+        background: rgba(255, 255, 255, 0.08);
+        color: #c2cdfc;
+        border: none;
+        padding: 8px 18px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 11px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        text-transform: uppercase;
+      }
+      .btn-cancel-export:hover {
+        background: rgba(223, 53, 165, 0.25);
+        color: #ff8ed9;
+      }
+
+      .download-menu {
+        display: none;
+        margin-top: 14px;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .btn-dl {
+        padding: 12px;
+        border: 0;
+        color: #fff;
+        font-weight: 900;
+        font-size: 12px;
+        cursor: pointer;
+        text-decoration: none;
+        display: block;
+        text-align: center;
+        transition: transform 0.1s ease;
+        box-shadow: 4px 4px 0 #050c32;
+      }
+      .btn-dl-mp4 {
+        background: linear-gradient(135deg, #eb3eae, #7548ed);
+      }
+      .btn-dl-png {
+        background: #17388e;
+        border: 2px solid #5778df;
+      }
+      .btn-dl:active {
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0 #050c32;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+        <div class="logo">✦ MENARIK SEASON 5</div>
+        <div class="clock" id="clock">--:--</div>
+      </header>
+    </header>
+
+    <main>
+      <div class="hero">
+        <div class="hero-title-wrap">
+          <h1 data-text="MENARIK">MENARIK</h1>
+          <div class="season-badge">SEASON 5</div>
+        </div>
+        <p>✦ Make it yours & see u at MENARIK Season 5 ✦</p>
+      </div>
+
+      <div class="card tutorial-card">
+        <div class="tutorial-head">
+          <strong>✦ TUTORIAL</strong>
+          <button
+            class="primary"
+            id="tutorialBtn"
+            style="
+              width: auto;
+              margin: 0;
+              padding: 8px 13px;
+              box-shadow: 3px 3px 0 #050c32;
+            "
+          >
+            ▶ WATCH
+          </button>
+        </div>
+        <div id="tutorialArea" style="display: none; margin-top: 12px">
+          <video
+            class="tutorial-video"
+            id="tutorialVideo"
+            controls
+            playsinline
+            preload="metadata"
+          >
+            <source src="assets/tutorial.mp4" type="video/mp4" />
+          </video>
+          <p class="help">Video tutorial penggunaan twibbon MENARIK SEASON 5</p>
+        </div>
+      </div>
+
+      <div class="layout">
+        <aside class="card">
+          <div>
+            <div class="drop">
+              <div style="font-size: 28px">🖼️</div>
+              <strong>START HERE</strong>
+              <div class="help">Pilih foto yang ingin kamu pasang.</div>
+            </div>
+
+            <label class="label" for="photo">Upload Foto</label>
+            <input id="photo" type="file" accept="image/*" />
+
+            <div class="control">
+              <label><span>Zoom</span><b id="zoomVal">1.00x</b></label>
+              <input
+                id="zoom"
+                type="range"
+                min=".5"
+                max="3"
+                step=".01"
+                value="1"
+              />
+            </div>
+            <div class="control">
+              <label><span>Geser X</span><b id="xVal">0</b></label>
+              <input id="posX" type="range" min="-500" max="500" value="0" />
+            </div>
+            <div class="control">
+              <label><span>Geser Y</span><b id="yVal">0</b></label>
+              <input id="posY" type="range" min="-500" max="500" value="0" />
+            </div>
+
+            <div class="mini-preview-box">
+              <div class="mini-preview-title">🖼️ Live Preview Foto (PNG)</div>
+              <div class="mini-canvas-wrap">
+                <canvas id="miniCanvas" width="1080" height="1350"></canvas>
+              </div>
+              <button class="btn-apply-preview" id="applyToVideoBtn">
+                ✦ TERAPKAN KE VIDEO
+              </button>
+            </div>
+          </div>
+
+          <div style="margin-top: 10px">
+            <button class="primary" id="playBtn">▶ PLAY PREVIEW</button>
+            <button class="primary" id="exportBtn" disabled>
+              ↓ GENERATE VIDEO
+            </button>
+          </div>
+        </aside>
+
+        <section class="card">
+          <div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px;
+              "
+            >
+              <strong>PREVIEW VIDEO</strong
+              ><span
+                style="
+                  background: #df35a5;
+                  padding: 4px 8px;
+                  font-size: 11px;
+                  font-weight: 900;
+                "
+                ><a
+                  href="http://instagram.com/menarikseason5_hmif"
+                  style="color: #fff; text-decoration: none"
+                  >@menarikseason5_hmif</a
+                ></span
+              >
+            </div>
+
+            <div class="stage" id="stage">
+              <canvas id="canvas" width="1080" height="1350"></canvas>
+              <div class="play-overlay-icon" id="playOverlayIcon">▶</div>
+            </div>
+
+            <div class="canvas-seek-box">
+              <label
+                ><span>Geser Durasi Video</span
+                ><b id="timeVal">0:00 / 0:00</b></label
+              >
+              <input
+                id="seek"
+                type="range"
+                min="0"
+                max="100"
+                step="0.01"
+                value="0"
+                disabled
+              />
+            </div>
+          </div>
+
+          <div class="video-download-container" id="videoDownloadContainer">
+            <div class="video-download-title">✦ VIDEO SIAP DIDOWNLOAD ✦</div>
+            <div class="video-download-btns">
+              <a
+                class="btn-video-dl btn-dl-mp4-styled btn-pulse"
+                id="videoDlMp4"
+                href="#"
+                download="twibbon-menarik-season5.mp4"
+                >⬇ SIMPAN MP4</a
+              >
+              <button class="btn-video-dl btn-dl-png-styled" id="videoDlPng">
+                🖼️ SIMPAN PNG
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- FITUR DITAMBAHKAN: CAPTION CARD -->
+      <div class="card caption-card" style="margin-top: 22px">
+        <div class="caption-head">
+          <strong>✦ CAPTION TWIBBON</strong>
+          <button
+            class="primary"
+            id="captionToggleBtn"
+            style="
+              width: auto;
+              margin: 0;
+              padding: 8px 13px;
+              box-shadow: 3px 3px 0 #050c32;
+            "
+          >
+            📝 SHOW CAPTION
+          </button>
+        </div>
+        <div id="captionArea" style="display: none; margin-top: 12px">
+          <div class="caption-box" id="captionText">
+            Code today, transform tomorrow! 💻✨ Halo Informatika 2026! Saya
+            [Nama Kamu] siap melangkah, belajar, dan berinovasi bersama di
+            keluarga besar Teknik Informatika. Saatnya ubah logika jadi karya
+            dan siap hadapi tantangan era digital! Ready to compile our future!
+            🚀 #Informatika26 #IT2026 #TeknikInformatika #NewJourney
+            #MENARIKSeason5
+          </div>
+          <button class="primary" id="copyCaptionBtn" style="margin-top: 10px">
+            📋 SALIN CAPTION
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <video
+      id="twibbonVideo"
+      playsinline
+      preload="auto"
+      muted
+      style="display: none"
+    ></video>
+    <audio id="twibbonAudio" preload="auto" style="display: none">
+      <source src="assets/twibbon.mp3" type="audio/mpeg" />
+    </audio>
+
+    <div class="export-overlay" id="exportOverlay">
+      <div class="export-box">
+        <div class="minara-wrap">
+          <img src="assets/minara.png" alt="Minara sedang mikir" />
+          <span class="spark">💡</span>
+        </div>
+        <div class="export-title" id="exportTitle">Tunggu bentar ya...</div>
+        <div class="export-text" id="exportOverlayText">
+          Menyiapkan proses export...
+        </div>
+
+        <div class="export-progress" id="exportProgressBox">
+          <div class="export-progress-bar" id="exportProgressBar"></div>
+        </div>
+        <div class="export-hint" id="exportHintText">
+          Jangan tutup atau pindah tab dulu supaya prosesnya tidak terganggu.
+        </div>
+
+        <div class="download-menu" id="downloadMenu">
+          <a
+            class="btn-dl btn-dl-mp4 btn-pulse"
+            id="modalDlMp4"
+            href="#"
+            download="twibbon-season-5.mp4"
+            >⬇ SIMPAN MP4</a
+          >
+          <button class="btn-dl btn-dl-png" id="modalDlPng">
+            🖼️ SIMPAN PNG
+          </button>
+        </div>
+
+        <button class="btn-cancel-export" id="cancelExportBtn">
+          ✕ Batalkan Export
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const TWIBBON_VIDEO = "assets/twibbon.mp4";
+      const FALLBACK_TWIBBON_VIDEO = "assets/twibbon4.mp4";
+      const TWIBBON_PNG_PREVIEW = "assets/twibbon1.png";
+      const TWIBBON_OVERLAY_PNG = "assets/overlay.png";
+
+      const CHROMA = {
+        r: 0,
+        g: 255,
+        b: 0,
+        intensity: 50,
+        shadow: 0,
+        feather: 10,
+        cleanup: 100,
+      };
+
+      const PHOTO_AREA = { x: 0, y: 0, w: 1080, h: 1350 };
+
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+
+      const miniCanvas = document.getElementById("miniCanvas");
+      const miniCtx = miniCanvas.getContext("2d");
+      const applyToVideoBtn = document.getElementById("applyToVideoBtn");
+
+      const video = document.getElementById("twibbonVideo");
+      const audio = document.getElementById("twibbonAudio");
+      const photo = new Image();
+      const stage = document.getElementById("stage");
+      const playOverlayIcon = document.getElementById("playOverlayIcon");
+
+      // Event Tutorial Toggle
+      const tutorialBtn = document.getElementById("tutorialBtn");
+      const tutorialArea = document.getElementById("tutorialArea");
+      tutorialBtn.onclick = () => {
+        if (tutorialArea.style.display === "none") {
+          tutorialArea.style.display = "block";
+          tutorialBtn.textContent = "✕ CLOSE";
+        } else {
+          tutorialArea.style.display = "none";
+          tutorialBtn.textContent = "▶ WATCH";
+        }
+      };
+
+      // Event Caption Toggle & Copy
+      const captionToggleBtn = document.getElementById("captionToggleBtn");
+      const captionArea = document.getElementById("captionArea");
+      const copyCaptionBtn = document.getElementById("copyCaptionBtn");
+      const captionText = document.getElementById("captionText");
+
+      captionToggleBtn.onclick = () => {
+        if (captionArea.style.display === "none") {
+          captionArea.style.display = "block";
+          captionToggleBtn.textContent = "✕ HIDE CAPTION";
+        } else {
+          captionArea.style.display = "none";
+          captionToggleBtn.textContent = "📝 SHOW CAPTION";
+        }
+      };
+
+      copyCaptionBtn.onclick = () => {
+        navigator.clipboard.writeText(captionText.innerText).then(() => {
+          const originalText = copyCaptionBtn.textContent;
+          copyCaptionBtn.textContent = "✅ CAPTION BERHASIL DISALIN!";
+          setTimeout(() => {
+            copyCaptionBtn.textContent = originalText;
+          }, 2000);
+        });
+      };
+
+      const twibbonPng = new Image();
+      let hasPng = false;
+      twibbonPng.src = TWIBBON_PNG_PREVIEW;
+      twibbonPng.onload = () => {
+        hasPng = true;
+        drawMiniPreview();
+      };
+
+      const overlayPng = new Image();
+      let hasOverlay = false;
+      overlayPng.src = TWIBBON_OVERLAY_PNG;
+      overlayPng.onload = () => {
+        hasOverlay = true;
+      };
+
+      let hasPhoto = false,
+        hasVideo = false,
+        raf = null,
+        recording = false,
+        lastDownloadUrl = null;
+      let exportTrack = null;
+      let audioContext = null;
+      let audioSourceNode = null;
+      let audioDestination = null;
+      let exportingNow = false;
+      let activeRecorder = null;
+      let cancelExportRequested = false;
+
+      let isFirstPhotoUpload = true;
+
+      let activeVideoPhotoState = { zoom: 1, x: 0, y: 0 };
+
+      const exportOverlay = document.getElementById("exportOverlay");
+      const exportTitle = document.getElementById("exportTitle");
+      const exportOverlayText = document.getElementById("exportOverlayText");
+      const exportProgressBar = document.getElementById("exportProgressBar");
+      const exportProgressBox = document.getElementById("exportProgressBox");
+      const exportHintText = document.getElementById("exportHintText");
+      const cancelExportBtn = document.getElementById("cancelExportBtn");
+      const downloadMenu = document.getElementById("downloadMenu");
+      const modalDlMp4 = document.getElementById("modalDlMp4");
+      const modalDlPng = document.getElementById("modalDlPng");
+
+      const videoDownloadContainer = document.getElementById(
+        "videoDownloadContainer",
+      );
+      const videoDlMp4 = document.getElementById("videoDlMp4");
+      const videoDlPng = document.getElementById("videoDlPng");
+
+      function showExportOverlay() {
+        exportingNow = true;
+        cancelExportRequested = false;
+        exportProgressBar.style.width = "0%";
+        exportTitle.textContent = "Tunggu bentar ya...";
+        exportOverlayText.textContent = "Menyiapkan proses export...";
+        exportProgressBox.style.display = "block";
+        exportHintText.style.display = "block";
+        downloadMenu.style.display = "none";
+        cancelExportBtn.textContent = "✕ Batalkan Export";
+        cancelExportBtn.style.display = "inline-flex";
+        exportOverlay.classList.add("show");
+      }
+
+      function showDownloadCompleteMenu(mp4Url) {
+        exportTitle.textContent = "Hore! Video Siap ✦";
+        exportOverlayText.textContent =
+          "Pilih format file yang ingin kamu simpan:";
+        exportProgressBox.style.display = "none";
+        exportHintText.style.display = "none";
+        modalDlMp4.href = mp4Url;
+        downloadMenu.style.display = "flex";
+        cancelExportBtn.textContent = "✕ Tutup";
+      }
+
+      function hideExportOverlay() {
+        exportingNow = false;
+        exportOverlay.classList.remove("show");
+      }
+
+      function setStatus(text) {
+        if (exportingNow && downloadMenu.style.display !== "flex")
+          exportOverlayText.textContent = text;
+      }
+
+      function updateExportProgress() {
+        const dur = video.duration;
+        const cur = video.currentTime || 0;
+        if (dur && isFinite(dur) && dur > 0) {
+          const pct = Math.min(100, (cur / dur) * 100);
+          exportProgressBar.style.width = pct + "%";
+          exportOverlayText.textContent =
+            "Sedang merekam... " + fmtTime(cur) + " / " + fmtTime(dur);
+        }
+      }
+
+      function updateClock() {
+        const now = new Date();
+        const hrs = String(now.getHours()).padStart(2, "0");
+        const mins = String(now.getMinutes()).padStart(2, "0");
+
+        const clockEl = document.getElementById("clock");
+        if (clockEl) {
+          clockEl.textContent = `${hrs}.${mins}`;
+        }
+      }
+
+      // Jalankan fungsi
+      setInterval(updateClock, 1000);
+      updateClock();
+
+      cancelExportBtn.onclick = () => {
+        if (downloadMenu.style.display === "flex") {
+          hideExportOverlay();
+          return;
+        }
+        if (!recording && !exportingNow) return;
+        cancelExportRequested = true;
+        exportOverlayText.textContent = "Membatalkan proses export...";
+
+        if (activeRecorder && activeRecorder.state !== "inactive") {
+          try {
+            activeRecorder.stop();
+          } catch (e) {}
+        }
+
+        video.pause();
+        audio.pause();
+      };
+
+      function triggerPngDownload() {
+        if (!hasPhoto) {
+          alert("Silakan upload foto terlebih dahulu!");
+          return;
+        }
+        const exportCanvas = document.createElement("canvas");
+        exportCanvas.width = 1080;
+        exportCanvas.height = 1350;
+        const eCtx = exportCanvas.getContext("2d");
+
+        drawPhotoToContext(
+          eCtx,
+          activeVideoPhotoState.zoom,
+          activeVideoPhotoState.x,
+          activeVideoPhotoState.y,
+        );
+
+        if (hasPng) {
+          eCtx.drawImage(twibbonPng, 0, 0, 1080, 1350);
+        }
+
+        const pngUrl = exportCanvas.toDataURL("image/png");
+        const a = document.createElement("a");
+        a.href = pngUrl;
+        a.download = "twibbon-menarik-season5.png";
+        a.click();
+      }
+
+      modalDlPng.onclick = triggerPngDownload;
+      videoDlPng.onclick = triggerPngDownload;
+
+      function loadPrimaryVideoSource() {
+        video.src = TWIBBON_VIDEO;
+        video.preload = "auto";
+        video.onerror = () => {
+          if (video.src.endsWith(TWIBBON_VIDEO)) {
+            video.src = FALLBACK_TWIBBON_VIDEO;
+            video.onerror = null;
+            video.load();
+          }
+        };
+      }
+
+      loadPrimaryVideoSource();
+      audio.load();
+
+      let videoFrameReady = false;
+      video.addEventListener("loadeddata", () => {
+        videoFrameReady = true;
+        if (!video.currentTime) video.currentTime = 2;
+        draw();
+      });
+      video.addEventListener("canplay", () => {
+        videoFrameReady = true;
+        draw();
+      });
+
+      function setupAudioCapture() {
+        if (audioDestination) return audioDestination;
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) throw new Error("Browser tidak mendukung AudioContext.");
+        audioContext = new AC();
+        audioSourceNode = audioContext.createMediaElementSource(audio);
+        audioDestination = audioContext.createMediaStreamDestination();
+        audioSourceNode.connect(audioDestination);
+        audioSourceNode.connect(audioContext.destination);
+        return audioDestination;
+      }
+
+      function syncAudioToVideo() {
+        if (!audio.duration || !isFinite(audio.duration)) return;
+        const t = Math.min(Math.max(video.currentTime || 0, 0), audio.duration);
+        try {
+          if (Math.abs(audio.currentTime - t) > 0.08) audio.currentTime = t;
+        } catch (e) {}
+      }
+
+      function updateLabels() {
+        zoomVal.textContent = Number(zoom.value).toFixed(2) + "x";
+        xVal.textContent = posX.value;
+        yVal.textContent = posY.value;
+      }
+
+      ["zoom", "posX", "posY"].forEach((id) =>
+        document.getElementById(id).addEventListener("input", () => {
+          updateLabels();
+          drawMiniPreview();
+
+          if (!isFirstPhotoUpload && hasPhoto) {
+            applyToVideoBtn.style.display = "block";
+          }
+        }),
+      );
+
+      applyToVideoBtn.onclick = async () => {
+        if (!hasVideo) return;
+
+        activeVideoPhotoState.zoom = Number(zoom.value);
+        activeVideoPhotoState.x = Number(posX.value);
+        activeVideoPhotoState.y = Number(posY.value);
+
+        draw();
+        video.currentTime = 0;
+        try {
+          audio.currentTime = 0;
+        } catch (e) {}
+
+        try {
+          setupAudioCapture();
+          if (audioContext && audioContext.state === "suspended")
+            await audioContext.resume();
+          syncAudioToVideo();
+          await Promise.all([video.play(), audio.play()]);
+        } catch (e) {
+          await video.play();
+        }
+
+        playBtn.textContent = "Ⅱ PAUSE PREVIEW";
+        playOverlayIcon.textContent = "Ⅱ";
+        if (!raf) loop();
+      };
+
+      document.getElementById("photo").addEventListener("change", (e) => {
+        const f = e.target.files[0];
+        if (!f) return;
+        photo.src = URL.createObjectURL(f);
+        photo.onload = () => {
+          hasPhoto = true;
+          exportBtn.disabled = !hasVideo;
+
+          isFirstPhotoUpload = true;
+          applyToVideoBtn.style.display = "none";
+
+          activeVideoPhotoState.zoom = Number(zoom.value);
+          activeVideoPhotoState.x = Number(posX.value);
+          activeVideoPhotoState.y = Number(posY.value);
+
+          drawMiniPreview();
+          draw();
+        };
+      });
+
+      video.addEventListener("loadedmetadata", () => {
+        hasVideo = true;
+        canvas.width = video.videoWidth || 1080;
+        canvas.height = video.videoHeight || 1350;
+        exportBtn.disabled = !hasPhoto;
+        seek.disabled = false;
+        seek.max = video.duration || 100;
+
+        video.currentTime = 2;
+
+        updateTimeLabel();
+        syncAudioToVideo();
+        drawMiniPreview();
+        draw();
+      });
+
+      let isScrubbing = false,
+        wasPlayingBeforeScrub = false;
+
+      function fmtTime(t) {
+        if (!isFinite(t)) t = 0;
+        const m = Math.floor(t / 60),
+          s = Math.floor(t % 60);
+        return m + ":" + String(s).padStart(2, "0");
+      }
+      function updateTimeLabel() {
+        timeVal.textContent =
+          fmtTime(video.currentTime) + " / " + fmtTime(video.duration || 0);
+      }
+
+      video.addEventListener("timeupdate", () => {
+        if (!isScrubbing) {
+          seek.value = video.currentTime;
+          updateTimeLabel();
+          if (
+            !recording &&
+            Math.abs(audio.currentTime - video.currentTime) > 0.12
+          ) {
+            try {
+              audio.currentTime = video.currentTime;
+            } catch (e) {}
+          }
+        }
+        if (exportingNow) updateExportProgress();
+      });
+
+      const seekInput = document.getElementById("seek");
+
+      seekInput.addEventListener("input", () => {
+        if (!hasVideo) return;
+        if (!isScrubbing) {
+          isScrubbing = true;
+          wasPlayingBeforeScrub = !video.paused;
+          video.pause();
+          audio.pause();
+          if (raf) {
+            cancelAnimationFrame(raf);
+            raf = null;
+          }
+        }
+        const targetTime = Number(seekInput.value);
+        video.currentTime = targetTime;
+        try {
+          audio.currentTime = targetTime;
+        } catch (e) {}
+        updateTimeLabel();
+        draw();
+      });
+
+      seekInput.addEventListener("change", () => {
+        if (!hasVideo) return;
+        isScrubbing = false;
+        if (wasPlayingBeforeScrub) {
+          video.play();
+          audio.play();
+          playBtn.textContent = "Ⅱ PAUSE PREVIEW";
+          playOverlayIcon.textContent = "Ⅱ";
+          if (!raf) loop();
+        } else {
+          draw();
+        }
+      });
+
+      video.addEventListener("seeked", () => {
+        updateTimeLabel();
+        syncAudioToVideo();
+        draw();
+      });
+
+      video.addEventListener("ended", () => {
+        audio.pause();
+        try {
+          audio.currentTime = 0;
+        } catch (e) {}
+        playBtn.textContent = "▶ PLAY PREVIEW";
+        playOverlayIcon.textContent = "▶";
+      });
+
+      function rgbToHsv(r, g, b) {
+        r /= 255;
+        g /= 255;
+        b /= 255;
+        const max = Math.max(r, g, b),
+          min = Math.min(r, g, b),
+          d = max - min;
+        let h = 0;
+        if (d) {
+          if (max === r) h = ((g - b) / d) % 6;
+          else if (max === g) h = (b - r) / d + 2;
+          else h = (r - g) / d + 4;
+          h *= 60;
+          if (h < 0) h += 360;
+        }
+        const s = max === 0 ? 0 : d / max;
+        return { h, s, v: max };
+      }
+
+      function makeChromaFrame() {
+        const tmp = document.createElement("canvas");
+        tmp.width = canvas.width;
+        tmp.height = canvas.height;
+        const t = tmp.getContext("2d", { willReadFrequently: true });
+        t.drawImage(video, 0, 0, tmp.width, tmp.height);
+
+        const im = t.getImageData(0, 0, tmp.width, tmp.height);
+        const d = im.data,
+          c = CHROMA;
+
+        const intensity = Math.min(100, Math.max(0, c.intensity)) / 100;
+        const shadow = Math.min(100, Math.max(0, c.shadow)) / 100;
+        const feather = Math.min(100, Math.max(0, c.feather));
+        const cleanup = Math.min(100, Math.max(0, c.cleanup)) / 100;
+
+        const hueMin = 70 - intensity * 20;
+        const hueMax = 150 + intensity * 35;
+
+        const domGR = Math.max(4, 18 - intensity * 12);
+        const domGB = Math.max(2, 12 - intensity * 8);
+
+        const fullKey = Math.max(3, 26 - intensity * 20);
+        const featherWidth = Math.max(1, feather * 0.6);
+
+        for (let i = 0; i < d.length; i += 4) {
+          let r = d[i],
+            g = d[i + 1],
+            b = d[i + 2];
+          const hsv = rgbToHsv(r, g, b);
+
+          const hueGreen = hsv.h >= hueMin && hsv.h <= hueMax;
+          const dominant = g - r > domGR && g - b > domGB;
+          const strength = Math.max(0, g - Math.max(r, b));
+          const notTeal = b < g * 0.55;
+          const shadowProtected = shadow > 0 && hsv.v < shadow;
+          if (
+            hueGreen &&
+            dominant &&
+            notTeal &&
+            !shadowProtected &&
+            strength > fullKey * 0.5
+          ) {
+            if (strength >= fullKey) {
+              let alpha =
+                feather <= 0
+                  ? 0
+                  : Math.round(
+                      255 *
+                        (1 -
+                          Math.min(
+                            1,
+                            Math.max(0, (strength - fullKey) / featherWidth),
+                          )),
+                    );
+              d[i + 3] = alpha;
+
+              if (alpha > 0 && cleanup > 0) {
+                d[i + 1] = Math.round(g - (g - Math.max(r, b)) * cleanup);
+              }
+            }
+          }
+        }
+
+        t.putImageData(im, 0, 0);
+        return tmp;
+      }
+
+      function drawPhotoToContext(targetCtx, zVal, xVal, yVal) {
+        if (!hasPhoto) return;
+        const a = PHOTO_AREA;
+        const ratio = Math.max(a.w / photo.width, a.h / photo.height) * zVal;
+        const w = photo.width * ratio,
+          h = photo.height * ratio;
+        const x = a.x + (a.w - w) / 2 + xVal;
+        const y = a.y + (a.h - h) / 2 + yVal;
+
+        targetCtx.save();
+        targetCtx.beginPath();
+        targetCtx.rect(a.x, a.y, a.w, a.h);
+        targetCtx.clip();
+        targetCtx.drawImage(photo, x, y, w, h);
+        targetCtx.restore();
+      }
+
+      function drawMiniPreview() {
+        miniCtx.clearRect(0, 0, miniCanvas.width, miniCanvas.height);
+
+        if (hasPhoto) {
+          drawPhotoToContext(
+            miniCtx,
+            Number(zoom.value),
+            Number(posX.value),
+            Number(posY.value),
+          );
+        } else {
+          miniCtx.fillStyle = "#07134b";
+          miniCtx.fillRect(0, 0, miniCanvas.width, miniCanvas.height);
+        }
+
+        if (hasPng) {
+          miniCtx.drawImage(
+            twibbonPng,
+            0,
+            0,
+            miniCanvas.width,
+            miniCanvas.height,
+          );
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        if (hasPhoto) {
+          drawPhotoToContext(
+            ctx,
+            activeVideoPhotoState.zoom,
+            activeVideoPhotoState.x,
+            activeVideoPhotoState.y,
+          );
+        } else {
+          ctx.fillStyle = "#07134b";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        if (hasVideo) {
+          const keyed = makeChromaFrame();
+          ctx.drawImage(keyed, 0, 0);
+        }
+
+        if (hasOverlay && hasVideo) {
+          const currentTime = video.currentTime || 0;
+          const startTime = 22.0;
+          const fadeDuration = 1.0;
+
+          if (currentTime >= startTime) {
+            let alpha = (currentTime - startTime) / fadeDuration;
+            if (alpha > 1) alpha = 1;
+
+            ctx.save();
+            ctx.globalAlpha = alpha;
+            ctx.drawImage(overlayPng, 0, 0, canvas.width, canvas.height);
+            ctx.restore();
+          }
+        }
+      }
+
+      function loop() {
+        try {
+          draw();
+        } catch (e) {}
+        if (exportTrack && typeof exportTrack.requestFrame === "function") {
+          try {
+            exportTrack.requestFrame();
+          } catch (e) {}
+        }
+        raf = requestAnimationFrame(loop);
+      }
+
+      async function togglePlay() {
+        if (!hasVideo) return;
+
+        if (isFirstPhotoUpload && hasPhoto) {
+          activeVideoPhotoState.zoom = Number(zoom.value);
+          activeVideoPhotoState.x = Number(posX.value);
+          activeVideoPhotoState.y = Number(posY.value);
+          isFirstPhotoUpload = false;
+        }
+
+        if (video.paused) {
+          try {
+            setupAudioCapture();
+            if (audioContext.state === "suspended") await audioContext.resume();
+            syncAudioToVideo();
+            await Promise.all([video.play(), audio.play()]);
+          } catch (e) {
+            await video.play();
+          }
+          playBtn.textContent = "Ⅱ PAUSE PREVIEW";
+          playOverlayIcon.textContent = "Ⅱ";
+          if (!raf) loop();
+        } else {
+          video.pause();
+          audio.pause();
+          playBtn.textContent = "▶ PLAY PREVIEW";
+          playOverlayIcon.textContent = "▶";
+          draw();
+        }
+      }
+
+      playBtn.onclick = togglePlay;
+
+      stage.onclick = () => {
+        togglePlay();
+        stage.classList.add("show-icon");
+        setTimeout(() => stage.classList.remove("show-icon"), 1200);
+      };
+
+      let ffmpegLoadPromise = null;
+
+      async function loadFFmpeg(showUi = true) {
+        if (window.ffmpegLoaded && window.ffmpegInstance)
+          return window.ffmpegInstance;
+        if (ffmpegLoadPromise) return ffmpegLoadPromise;
+
+        ffmpegLoadPromise = (async () => {
+          const { FFmpeg } =
+            await import("https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/esm/index.js");
+          const { toBlobURL } =
+            await import("https://cdn.jsdelivr.net/npm/@ffmpeg/util@0.12.1/dist/esm/index.js");
+          const coreBase =
+            "https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/esm";
+          const ff = new FFmpeg();
+
+          await ff.load({
+            coreURL: await toBlobURL(
+              `${coreBase}/ffmpeg-core.js`,
+              "text/javascript",
+            ),
+            wasmURL: await toBlobURL(
+              `${coreBase}/ffmpeg-core.wasm`,
+              "application/wasm",
+            ),
+            classWorkerURL: await toBlobURL(
+              "https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/esm/worker.js",
+              "text/javascript",
+            ),
+          });
+
+          window.ffmpegInstance = ff;
+          window.ffmpegLoaded = true;
+          return ff;
+        })();
+
+        return await ffmpegLoadPromise;
+      }
+
+      function pickRecorderMime() {
+        if (typeof MediaRecorder === "undefined") return null;
+        const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        const candidates = isMobile
+          ? [
+              "video/mp4;codecs=avc1.42E01E,mp4a.40.2",
+              "video/mp4",
+              "video/webm;codecs=vp9,opus",
+              "video/webm",
+            ]
+          : [
+              "video/mp4;codecs=avc1.42E01E,mp4a.40.2",
+              "video/mp4",
+              "video/webm;codecs=vp9,opus",
+              "video/webm",
+            ];
+        for (const m of candidates) {
+          if (MediaRecorder.isTypeSupported(m)) return m;
+        }
+        return null;
+      }
+
+      exportBtn.onclick = async () => {
+        if (!hasPhoto || !hasVideo || recording) return;
+
+        const mime = pickRecorderMime();
+        if (!mime) {
+          alert(
+            "Browser ini belum mendukung export video. Coba di Chrome/Edge terbaru.",
+          );
+          return;
+        }
+
+        recording = true;
+        exportBtn.disabled = true;
+        playBtn.disabled = true;
+        seek.disabled = true;
+        showExportOverlay();
+
+        videoDownloadContainer.style.display = "none";
+        if (lastDownloadUrl) {
+          URL.revokeObjectURL(lastDownloadUrl);
+          lastDownloadUrl = null;
+        }
+
+        let canvasStream = null,
+          audioStream = null;
+
+        try {
+          if (!raf) raf = requestAnimationFrame(loop);
+
+          canvasStream = canvas.captureStream(30);
+          exportTrack = canvasStream.getVideoTracks()[0] || null;
+
+          const destination = setupAudioCapture();
+          audioStream = destination.stream;
+
+          const output = new MediaStream([
+            ...canvasStream.getVideoTracks(),
+            ...audioStream.getAudioTracks(),
+          ]);
+          const chunks = [];
+          const recorder = new MediaRecorder(output, {
+            mimeType: mime,
+            videoBitsPerSecond: 16000000,
+            audioBitsPerSecond: 192000,
+          });
+          activeRecorder = recorder;
+
+          recorder.ondataavailable = (e) => {
+            if (e.data.size) chunks.push(e.data);
+          };
+
+          video.pause();
+          video.loop = false;
+          video.currentTime = 0;
+
+          await new Promise((resolve) => {
+            const onSeeked = () => {
+              video.removeEventListener("seeked", onSeeked);
+              resolve();
+            };
+            video.addEventListener("seeked", onSeeked);
+            setTimeout(resolve, 1000);
+          });
+
+          if (cancelExportRequested)
+            throw new Error("Dibatalkan oleh pengguna.");
+
+          if (audioContext && audioContext.state === "suspended") {
+            try {
+              await audioContext.resume();
+            } catch (e) {}
+          }
+          audio.currentTime = 0;
+          try {
+            await video.play();
+          } catch (e) {}
+          try {
+            await audio.play();
+          } catch (e) {}
+
+          recorder.start(500);
+
+          const exportTimeoutMs = Math.max(
+            45000,
+            ((video.duration || 30) * 1000) + 15000,
+          );
+
+          await new Promise((resolve, reject) => {
+            let settled = false;
+            let timer = null;
+            const finish = (err) => {
+              if (settled) return;
+              settled = true;
+              clearTimeout(timer);
+              video.removeEventListener("ended", onEnded);
+              if (err) reject(err);
+              else resolve();
+            };
+            const onEnded = () => finish();
+
+            timer = setTimeout(() => {
+              if (cancelExportRequested) {
+                finish(new Error("Dibatalkan oleh pengguna."));
+                return;
+              }
+              finish();
+            }, exportTimeoutMs);
+
+            video.addEventListener("ended", onEnded);
+            const watchCancel = setInterval(() => {
+              if (cancelExportRequested) {
+                clearInterval(watchCancel);
+                finish(new Error("Dibatalkan oleh pengguna."));
+              }
+            }, 200);
+          });
+
+          if (recorder.state !== "inactive") recorder.stop();
+          await new Promise((resolve) => setTimeout(resolve, 1200));
+
+          const recorded = new Blob(chunks, { type: mime });
+          let finalBlob;
+
+          if (mime.startsWith("video/mp4")) {
+            finalBlob = recorded;
+          } else {
+            setStatus("Mengonversi video ke MP4...");
+            const ff = await loadFFmpeg(true);
+            const { fetchFile } =
+              await import("https://cdn.jsdelivr.net/npm/@ffmpeg/util@0.12.1/dist/esm/index.js");
+
+            ff.on("progress", ({ progress }) => {
+              if (!exportingNow) return;
+              const pct = Math.max(
+                0,
+                Math.min(100, Math.round(progress * 100)),
+              );
+              exportProgressBar.style.width = pct + "%";
+              exportOverlayText.textContent =
+                "Mengonversi ke MP4... " + pct + "%";
+            });
+
+            await ff.writeFile("input.webm", await fetchFile(recorded));
+            await ff.exec([
+              "-i",
+              "input.webm",
+              "-c:v",
+              "copy",
+              "-c:a",
+              "aac",
+              "output.mp4",
+            ]);
+            const data = await ff.readFile("output.mp4");
+            finalBlob = new Blob([data.buffer], { type: "video/mp4" });
+          }
+
+          lastDownloadUrl = URL.createObjectURL(finalBlob);
+          videoDlMp4.href = lastDownloadUrl;
+          videoDownloadContainer.style.display = "block";
+
+          showDownloadCompleteMenu(lastDownloadUrl);
+        } catch (e) {
+          if (cancelExportRequested) {
+            setStatus("Proses dikembalikan.");
+          } else {
+            alert("Gagal memproses video: " + e.message);
+          }
+          hideExportOverlay();
+        } finally {
+          recording = false;
+          exportBtn.disabled = false;
+          playBtn.disabled = false;
+          seek.disabled = false;
+          activeRecorder = null;
+          cancelExportRequested = false;
+          exportTrack = null;
+          video.pause();
+          audio.pause();
+        }
+      };
+    </script>
+  </body>
+</html>

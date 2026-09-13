@@ -1,0 +1,6 @@
+*.mp4 binary
+*.mp4 -text
+*.png binary
+*.png -text
+*.mp3 binary
+*.mp3 -text

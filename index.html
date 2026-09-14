@@ -8,16 +8,19 @@
       @font-face {
         font-family: "SmallBoldPixel7";
         src: url("font/small_bold_pixel-7.ttf") format("truetype");
+        font-display: swap;
       }
 
       @font-face {
         font-family: "PixeloutPersonalUseOnly";
         src: url("font/Pixelout.ttf") format("truetype");
+        font-display: swap;
       }
 
       @font-face {
         font-family: "Pixellari";
         src: url("font/Pixellari.ttf") format("truetype");
+        font-display: swap;
       }
 
       * {
@@ -859,18 +862,18 @@
     <video
       id="twibbonVideo"
       playsinline
-      preload="auto"
+      preload="none"
       muted
       style="display: none"
     ></video>
-    <audio id="twibbonAudio" preload="auto" style="display: none">
+    <audio id="twibbonAudio" preload="none" style="display: none">
       <source src="assets/twibbon.mp3" type="audio/mpeg" />
     </audio>
 
     <div class="export-overlay" id="exportOverlay">
       <div class="export-box">
         <div class="minara-wrap">
-          <img src="assets/minara.png" alt="Minara sedang mikir" />
+          <img src="assets/minara.png" alt="Minara sedang mikir" loading="lazy" />
           <span class="spark">💡</span>
         </div>
         <div class="export-title" id="exportTitle">Tunggu bentar ya...</div>

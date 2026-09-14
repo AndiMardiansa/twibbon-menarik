@@ -924,6 +924,7 @@
       };
 
       const IS_MOBILE = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      const EXPORT_DURATION = 30; // seconds target for exported video
 
       const PHOTO_AREA = { x: 0, y: 0, w: 1080, h: 1350 };
 
@@ -1656,7 +1657,8 @@
         try {
           if (!raf) raf = requestAnimationFrame(loop);
 
-          const captureFps = IS_MOBILE ? 20 : 30;
+          // prefer stable 30fps capture for smooth HD output
+          const captureFps = 30;
           canvasStream = canvas.captureStream(captureFps);
           exportTrack = canvasStream.getVideoTracks()[0] || null;
 
@@ -1668,7 +1670,8 @@
             ...audioStream.getAudioTracks(),
           ]);
           const chunks = [];
-          const videoBits = IS_MOBILE ? 4000000 : 16000000;
+          // increase bitrate for HD output; lower on very constrained mobile
+          const videoBits = IS_MOBILE ? 6000000 : 8000000;
           const audioBits = IS_MOBILE ? 128000 : 192000;
 
           const recorder = new MediaRecorder(output, {
@@ -1711,40 +1714,48 @@
             await audio.play();
           } catch (e) {}
 
-          // Give media a short moment to stabilize on mobile before starting
-          await new Promise((r) => setTimeout(r, IS_MOBILE ? 600 : 150));
-          recorder.start(500);
+          // Give media a short moment to stabilize before starting
+          await new Promise((r) => setTimeout(r, IS_MOBILE ? 400 : 120));
+          recorder.start(250);
 
-          const exportTimeoutMs = Math.max(
-            45000,
-            ((video.duration || 30) * 1000) + 15000,
-          );
-
+          // Stop recording when video reaches EXPORT_DURATION (or ends)
           await new Promise((resolve, reject) => {
             let settled = false;
-            let timer = null;
             const finish = (err) => {
               if (settled) return;
               settled = true;
-              clearTimeout(timer);
-              video.removeEventListener("ended", onEnded);
+              try {
+                video.removeEventListener("timeupdate", onTime);
+                video.removeEventListener("ended", onEnded);
+              } catch (e) {}
               if (err) reject(err);
               else resolve();
             };
-            const onEnded = () => finish();
 
-            timer = setTimeout(() => {
+            const onEnded = () => finish();
+            const onTime = () => {
+              const cur = video.currentTime || 0;
               if (cancelExportRequested) {
                 finish(new Error("Dibatalkan oleh pengguna."));
                 return;
               }
-              finish();
-            }, exportTimeoutMs);
+              if (cur >= EXPORT_DURATION) {
+                finish();
+              }
+            };
 
+            // safety timeout to avoid hanging (EXPORT_DURATION + 20s)
+            const safety = setTimeout(() => {
+              if (!settled) finish();
+            }, (EXPORT_DURATION + 20) * 1000);
+
+            video.addEventListener("timeupdate", onTime);
             video.addEventListener("ended", onEnded);
+
             const watchCancel = setInterval(() => {
               if (cancelExportRequested) {
                 clearInterval(watchCancel);
+                clearTimeout(safety);
                 finish(new Error("Dibatalkan oleh pengguna."));
               }
             }, 200);

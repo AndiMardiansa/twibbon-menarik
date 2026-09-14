@@ -1718,44 +1718,32 @@
           await new Promise((r) => setTimeout(r, IS_MOBILE ? 400 : 120));
           recorder.start(250);
 
-          // Stop recording when video reaches EXPORT_DURATION (or ends)
+          // Stop recording after a wall-clock EXPORT_DURATION (or when video ends)
           await new Promise((resolve, reject) => {
             let settled = false;
             const finish = (err) => {
               if (settled) return;
               settled = true;
               try {
-                video.removeEventListener("timeupdate", onTime);
                 video.removeEventListener("ended", onEnded);
               } catch (e) {}
+              clearTimeout(timer);
               if (err) reject(err);
               else resolve();
             };
 
             const onEnded = () => finish();
-            const onTime = () => {
-              const cur = video.currentTime || 0;
-              if (cancelExportRequested) {
-                finish(new Error("Dibatalkan oleh pengguna."));
-                return;
-              }
-              if (cur >= EXPORT_DURATION) {
-                finish();
-              }
-            };
 
-            // safety timeout to avoid hanging (EXPORT_DURATION + 20s)
-            const safety = setTimeout(() => {
-              if (!settled) finish();
-            }, (EXPORT_DURATION + 20) * 1000);
+            // Start a strict wall-clock timer for EXPORT_DURATION seconds.
+            const timer = setTimeout(() => {
+              finish();
+            }, EXPORT_DURATION * 1000);
 
-            video.addEventListener("timeupdate", onTime);
             video.addEventListener("ended", onEnded);
 
             const watchCancel = setInterval(() => {
               if (cancelExportRequested) {
                 clearInterval(watchCancel);
-                clearTimeout(safety);
                 finish(new Error("Dibatalkan oleh pengguna."));
               }
             }, 200);

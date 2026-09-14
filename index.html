@@ -923,6 +923,8 @@
         cleanup: 100,
       };
 
+      const IS_MOBILE = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
       const PHOTO_AREA = { x: 0, y: 0, w: 1080, h: 1350 };
 
       const canvas = document.getElementById("canvas");
@@ -1654,7 +1656,8 @@
         try {
           if (!raf) raf = requestAnimationFrame(loop);
 
-          canvasStream = canvas.captureStream(30);
+          const captureFps = IS_MOBILE ? 20 : 30;
+          canvasStream = canvas.captureStream(captureFps);
           exportTrack = canvasStream.getVideoTracks()[0] || null;
 
           const destination = setupAudioCapture();
@@ -1665,10 +1668,13 @@
             ...audioStream.getAudioTracks(),
           ]);
           const chunks = [];
+          const videoBits = IS_MOBILE ? 4000000 : 16000000;
+          const audioBits = IS_MOBILE ? 128000 : 192000;
+
           const recorder = new MediaRecorder(output, {
             mimeType: mime,
-            videoBitsPerSecond: 16000000,
-            audioBitsPerSecond: 192000,
+            videoBitsPerSecond: videoBits,
+            audioBitsPerSecond: audioBits,
           });
           activeRecorder = recorder;
 
@@ -1705,6 +1711,8 @@
             await audio.play();
           } catch (e) {}
 
+          // Give media a short moment to stabilize on mobile before starting
+          await new Promise((r) => setTimeout(r, IS_MOBILE ? 600 : 150));
           recorder.start(500);
 
           const exportTimeoutMs = Math.max(
@@ -1749,6 +1757,9 @@
           let finalBlob;
 
           if (mime.startsWith("video/mp4")) {
+            finalBlob = recorded;
+          } else if (IS_MOBILE) {
+            // On mobile, avoid running heavy ffmpeg WASM; provide recorded blob (webm) directly
             finalBlob = recorded;
           } else {
             setStatus("Mengonversi video ke MP4...");
